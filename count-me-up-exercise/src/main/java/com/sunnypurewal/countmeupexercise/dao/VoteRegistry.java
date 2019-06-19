@@ -2,13 +2,23 @@ package com.sunnypurewal.countmeupexercise.dao;
 
 import com.sunnypurewal.countmeupexercise.Model.Candidate;
 
+import java.util.Map;
+
 public interface VoteRegistry {
 
-    void registerCandidate(Candidate candidate);
+    void addCandidate(String candidateId, Candidate candidate);
 
-    void processVotes();
+    Map<String, Candidate>  getAllCandidates();
 
-    void getResults();
+    Candidate getCandidate(String candidateId);
+
+    void updateCandidate(String candidateId, Candidate candidate);
+
+    void removeCandidate(String candidateId);
+
+    void processVotes(String candidateId, int numberOfVotes);
+
+    Map<String, Candidate> getResults();
 
     void getWinner();
 }
