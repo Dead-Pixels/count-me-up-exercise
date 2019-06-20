@@ -20,8 +20,7 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public Map<String, Candidate> generateResults() {
         // The idea here is to process the results as efficiently as possible
-        // Populate a Results object with the generated data
-        // Return this object which will be returned in a JSON format
+        // Returning map which will be converted into JSON using jackson/spring
         Map<String, Candidate> candidates = candidateRegistry.getAllCandidates();
 
         int totalVotes = getTotalNumberOfVotes(candidates);

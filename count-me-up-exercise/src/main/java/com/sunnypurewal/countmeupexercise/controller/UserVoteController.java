@@ -18,6 +18,8 @@ public class UserVoteController {
 
     private UserVoteService userVoteService;
     private CandidateService candidateService;
+    //This value is pulled from application.properties. Meaning that you can update it to as many votes as you would like
+    //The default is 3
     @Value("${total.votes.allowed}")
     private int totalVotesAllowed = 3;
 

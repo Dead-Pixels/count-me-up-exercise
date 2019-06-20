@@ -12,6 +12,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/gameshow")
 public class ResultController {
+    //Initially I had the get results method as part of the user vote controller but it made more sense to
+    //Seperate them out into individual controllers.
 
     private ResultService resultsService;
 
