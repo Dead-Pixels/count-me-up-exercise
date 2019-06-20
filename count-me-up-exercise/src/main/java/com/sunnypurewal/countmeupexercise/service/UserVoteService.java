@@ -1,9 +1,9 @@
 package com.sunnypurewal.countmeupexercise.service;
 
-import com.sunnypurewal.countmeupexercise.Model.Candidate;
+import com.sunnypurewal.countmeupexercise.model.User;
 
 public interface UserVoteService {
 
-    void submitVote(String candidateId, Candidate candidate);
+    void submitVote(String userId, User user, String candidateId);
 
 }

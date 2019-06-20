@@ -1,4 +1,4 @@
-package com.sunnypurewal.countmeupexercise.Model;
+package com.sunnypurewal.countmeupexercise.model;
 
 import org.springframework.beans.factory.annotation.Value;
 
@@ -14,7 +14,6 @@ public class User {
     public User(String firstName, String lastName, String age) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
     }
 
     public String getFirstName() {
@@ -33,19 +32,19 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
-
     public int getVoteCount() {
         return voteCount;
     }
 
     public void setVoteCount(int voteCount) {
         this.voteCount = voteCount;
+    }
+
+    public boolean incrementCount() {
+        if (voteCount + 1 < totalVotesAllowed) {
+            this.voteCount++;
+            return true;
+        }
+        return false;
     }
 }

@@ -1,6 +1,6 @@
 package com.sunnypurewal.countmeupexercise.dao;
 
-import com.sunnypurewal.countmeupexercise.Model.User;
+import com.sunnypurewal.countmeupexercise.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -24,17 +24,38 @@ public class UserRegistryDao implements UserRegistry {
         userList = new HashMap<>();
     }
 
-    @Override
+    public void submitVote(String username, User user) {
+        //check if user exists
+        if (findUser(username)) {
+            //increment count -> will only increment if under designated max votes
+            getUser(username).incrementCount();
+        } else {
+            //create user
+            registerUser(username, user);
+            //increment count
+            getUser(username).incrementCount();
+        }
+    }
+
+
     public void registerUser(String username, User user) {
         userList.put(username, user);
+
     }
 
-    @Override
     public User getUser(String username) {
-       return userList.get(username);
+        return userList.get(username);
     }
 
-    @Override
+    public boolean findUser(String username) {
+        User user = userList.get(username);
+
+        if (user != null) {
+            return true;
+        }
+        return false;
+    }
+
     public int checkNumberOfVotes(String username) {
         User user = getUser(username);
         return user.getVoteCount();

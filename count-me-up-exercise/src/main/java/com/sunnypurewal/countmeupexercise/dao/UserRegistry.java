@@ -1,14 +1,9 @@
 package com.sunnypurewal.countmeupexercise.dao;
 
-import com.sunnypurewal.countmeupexercise.Model.User;
+import com.sunnypurewal.countmeupexercise.model.User;
 
 public interface UserRegistry {
 
-    void registerUser(String username, User user);
-
-    User getUser(String username);
-
-    int checkNumberOfVotes(String username);
-
+ void submitVote(String username, User user);
     }
 
