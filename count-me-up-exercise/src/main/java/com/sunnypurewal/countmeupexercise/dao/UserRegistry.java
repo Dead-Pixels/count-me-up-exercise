@@ -4,6 +4,8 @@ import com.sunnypurewal.countmeupexercise.model.User;
 
 public interface UserRegistry {
 
- void submitVote(String username, User user);
-    }
+    void submitVote(String username, User user);
+
+    User getUser(String userId);
+}
 

@@ -8,11 +8,6 @@ import java.util.Map;
 
 @Repository
 public class CandidateRegistryDao implements CandidateRegistry {
-    //split into Vote registry where counts per candidate are collected and processed and userregistery where users are
-    //registered and the number of votes they have made are collected
-    //I would have liked to maybe add the votes to a queue and have these votes multithread process votes
-    // and update results continually
-    //Assumption validation for usernames will be handled on the front end
 
     private Map<String, Candidate> candidateList;
 
@@ -26,7 +21,8 @@ public class CandidateRegistryDao implements CandidateRegistry {
 
     @Override
     public Candidate addCandidate(String candidateId, Candidate candidate){
-        return candidateList.put(candidateId, candidate);
+         candidateList.put(candidateId, candidate);
+         return candidate;
     }
 
     @Override
@@ -49,8 +45,9 @@ public class CandidateRegistryDao implements CandidateRegistry {
         candidateList.remove(candidateId);
     }
 
+    //Votes are to be incremented by 1 each time
     @Override
-    public void incrementVoteForCandidate(String candidateId){
-        getCandidate(candidateId).incrementVotes();
+    public int incrementVoteForCandidate(String candidateId){
+        return getCandidate(candidateId).incrementVotes();
     }
 }

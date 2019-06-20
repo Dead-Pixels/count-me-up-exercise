@@ -23,4 +23,9 @@ public class UserVoteServiceImpl implements UserVoteService {
         userRegistry.submitVote(userId, user);
         candidateRegistry.incrementVoteForCandidate(candidateId);
     }
+
+    @Override
+    public User getUser(String username) {
+        return userRegistry.getUser(username);
+    }
 }

@@ -6,4 +6,6 @@ public interface UserVoteService {
 
     void submitVote(String userId, User user, String candidateId);
 
+    User getUser(String userId);
+
 }

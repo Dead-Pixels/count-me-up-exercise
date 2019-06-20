@@ -1,19 +1,24 @@
 package com.sunnypurewal.countmeupexercise.model;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 
 public class User {
 
     private String firstName;
     private String lastName;
-    private String age;
     private int voteCount = 0;
-    @Value("${total.votes.allowed}")
-    private int totalVotesAllowed;
 
-    public User(String firstName, String lastName, String age) {
+    @JsonCreator
+    public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public User(String firstName, String lastName, int voteCount) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.voteCount = voteCount;
     }
 
     public String getFirstName() {
@@ -40,11 +45,7 @@ public class User {
         this.voteCount = voteCount;
     }
 
-    public boolean incrementCount() {
-        if (voteCount + 1 < totalVotesAllowed) {
+    public void incrementCount() {
             this.voteCount++;
-            return true;
-        }
-        return false;
     }
 }

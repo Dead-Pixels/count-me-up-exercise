@@ -7,24 +7,22 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class CandidateRestExceptionHandler {
+public class UserRestExceptionHandler {
 
     //intially I was going to just create an exception and handle it back but I thought it would make more sense to
     //actually create some custom exceptions which would make more sense to somebody reading the code and give
     //useful and relevant error information
 
-
-    //Specific error when candidate cannot be found
     @ExceptionHandler
-    public ResponseEntity<BaseErrorResponse> handleCandidateNotFoundException(CandidateNotFoundException e){
-        BaseErrorResponse error = new BaseErrorResponse(HttpStatus.NOT_FOUND.value(),
+    public ResponseEntity<BaseErrorResponse> handleUserExceededVoteException(UserExceedVoteException e) {
+        BaseErrorResponse error = new BaseErrorResponse(HttpStatus.BAD_REQUEST.value(),
                 e.getMessage(),
                 System.currentTimeMillis());
-        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
-    public ResponseEntity<BaseErrorResponse> handleCandidateMalformedRequestException(CandidateMalformedRequestException e){
+    public ResponseEntity<BaseErrorResponse> handleUserMalformedRequestException(UserMalformedRequestException e) {
         BaseErrorResponse error = new BaseErrorResponse(HttpStatus.BAD_REQUEST.value(),
                 e.getMessage(),
                 System.currentTimeMillis());
@@ -33,12 +31,10 @@ public class CandidateRestExceptionHandler {
 
     //Catch all exception to cover all other bases
     @ExceptionHandler
-    public ResponseEntity<BaseErrorResponse> handleException(Exception e){
+    public ResponseEntity<BaseErrorResponse> handleException(Exception e) {
         BaseErrorResponse error = new BaseErrorResponse(HttpStatus.BAD_REQUEST.value(),
                 e.getMessage(),
                 System.currentTimeMillis());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
-
-
 }

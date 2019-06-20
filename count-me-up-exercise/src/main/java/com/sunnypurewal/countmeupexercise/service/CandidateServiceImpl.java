@@ -10,10 +10,6 @@ import java.util.Map;
 @Service
 public class CandidateServiceImpl implements CandidateService {
 
-    //This is strictly for creating and maintaining candidates now
-    //I wanted to create code as manageable as possible so I coded to interfaces and seperated out user, candidate,
-    // and result functionality to decouple code
-
     private CandidateRegistry candidateRegistry;
 
     @Autowired

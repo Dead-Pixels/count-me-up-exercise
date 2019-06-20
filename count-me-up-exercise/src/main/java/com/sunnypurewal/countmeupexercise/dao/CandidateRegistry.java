@@ -16,6 +16,6 @@ public interface CandidateRegistry {
 
     void removeCandidate(String candidateId);
 
-    void incrementVoteForCandidate(String candidateId);
+    int incrementVoteForCandidate(String candidateId);
 
 }

@@ -4,15 +4,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 public class Candidate {
 
-
     private String firstName;
     private String lastName;
     private int totalNumberOfVotes = 0;
     private int percentageOfVotes = 0;
 
     @JsonCreator
-    public Candidate(String firstname, String lastName) {
-        this.firstName = firstname;
+    public Candidate(String firstName, String lastName) {
+        this.firstName = firstName;
         this.lastName = lastName;
     }
 
@@ -61,7 +60,8 @@ public class Candidate {
         this.percentageOfVotes = percentageOfVotes;
     }
 
-    public void incrementVotes(){
-        this.totalNumberOfVotes++;
+    public int incrementVotes(){
+       this.totalNumberOfVotes++;
+       return this.totalNumberOfVotes;
     }
 }

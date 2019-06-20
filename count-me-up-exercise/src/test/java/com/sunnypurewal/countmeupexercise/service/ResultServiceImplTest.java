@@ -21,6 +21,7 @@ public class ResultServiceImplTest {
     private CandidateRegistry candidateRegistry;
     @InjectMocks
     private ResultServiceImpl resultService;
+
     private Map<String, Candidate> candidates;
 
     @Test
@@ -92,7 +93,8 @@ public class ResultServiceImplTest {
         assertEquals(100, resultService.getTotalNumberOfVotes(candidates));
     }
 
-    @Test
+    //checking if response is under one second
+    @Test(timeout=1000)
     public void getTotalNumberOfVotes_TotalOfTenMillion_shouldReturnTenMillion() {
         candidates = new HashMap<>();
         candidates.put("JohnWick", new Candidate("John","Wick", 1500000));
@@ -104,16 +106,7 @@ public class ResultServiceImplTest {
         assertEquals(10000000, resultService.getTotalNumberOfVotes(candidates));
     }
 
-    @Test
-    public void getTotalNumberOfVotes_negativeNumbers_shouldReturnZero() {
-        candidates = new HashMap<>();
-        candidates.put("JohnWick", new Candidate("John","Wick", -50));
-        candidates.put("TonyStark", new Candidate("Tony","Stark", -10));
-        candidates.put("CarolDanvers", new Candidate("Carol","Danvers", -20));
-        candidates.put("JeanGrey", new Candidate("Jean","Grey", -5));
-        candidates.put("BruceBanner", new Candidate("Bruce","Banner", -15));
 
-        assertEquals(0, resultService.getTotalNumberOfVotes(candidates));
-    }
+
         //not testing build results method as this is already tested via generateResultsMethod
 }

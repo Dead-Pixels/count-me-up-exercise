@@ -1,15 +1,13 @@
 package com.sunnypurewal.countmeupexercise.service;
 
-import com.sunnypurewal.countmeupexercise.model.Candidate;
 import com.sunnypurewal.countmeupexercise.dao.CandidateRegistry;
-import lombok.extern.java.Log;
+import com.sunnypurewal.countmeupexercise.model.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 @Service
-@Log
 public class ResultServiceImpl implements ResultService {
 
     private CandidateRegistry candidateRegistry;
@@ -27,7 +25,6 @@ public class ResultServiceImpl implements ResultService {
         Map<String, Candidate> candidates = candidateRegistry.getAllCandidates();
 
         int totalVotes = getTotalNumberOfVotes(candidates);
-        log.info("Something went wrong " + totalVotes);
 
         buildResults(totalVotes, candidates);
 
@@ -38,7 +35,6 @@ public class ResultServiceImpl implements ResultService {
         int totalVotes = 0;
 
         for (Map.Entry<String, Candidate> candidate : candidates.entrySet()) {
-            log.info("CANDIDATE " + candidate);
             totalVotes += candidate.getValue().getTotalNumberOfVotes();
         }
         return totalVotes;
